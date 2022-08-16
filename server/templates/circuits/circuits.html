@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Circuits{% endblock %}</h1>
+{% if g.user %}
+<form method="post">
+    <label for="name">Name</label>
+    <input name="name" id="name" required>
+    <label for="number">Number</label>
+    <input type="integer" name="number" id="number" required>
+    <input type="submit" value="Add circuit">
+</form>  {% endif %}
+{% endblock %}
+
+{% block content %}
+<table>
+    <thead>
+        <td>Id</td>
+        <td>Name</td>
+    </thead>
+    <tbody>
+    {% for circuit in circuits %}
+    <tr>
+        <article class="circuit">
+            <div>
+                <td><span>{{circuit['id']}}</span></td>
+                <td><span>{{circuit['name']}}</span></td>
+            </div>
+        </article>
+        {% if not loop.last %}
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

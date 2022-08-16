@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Sprinklers{% endblock %}</h1>
+  {% if g.user %}
+  <form method="post">
+    <label for="Number">Number</label>
+    <input type="integer" name="number" id="number" required>
+    <label for="x">X</label>
+    <input type="float" name="x" id="x" required>
+    <label for="y">Y</label>
+    <input type="float" name="y" id="y" required>
+    <label for="circuit_id">Circuit id</label>
+    <input type="integer" name="circuit_id" id="circuit_id" required>
+    <input type="submit" value="Add sprinkler">
+  </form>  {% endif %}
+{% endblock %}
+
+{% block content %}
+<table>
+  <thead>
+  <td>id</td>
+  <td>number</td>
+  <td>x</td>
+  <td>y</td>
+  <td>Circuit id</td>
+  <td>Circuit name</td>
+  </thead>
+  <tbody>
+  {% for sprinkler in sprinklers %}
+  <tr>
+    <article class="task">
+        <div>
+          <td><span>{{sprinkler['id']}}</span></td>
+          <td><span>{{sprinkler['number']}}</span></td>
+          <td><span>{{sprinkler['x']}}</span></td>
+          <td><span>{{sprinkler['y']}}</span></td>
+          <td><span>{{sprinkler['circuit_id']}}</span></td>
+          <td><span>{{sprinkler['name']}}</span></td>
+        </div>
+    </article>
+    {% if not loop.last %}
+    {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}

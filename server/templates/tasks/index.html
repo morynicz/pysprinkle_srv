@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Tasks{% endblock %}</h1>
+{% if g.user %}
+<form method="post">
+    <label for="start">Start</label>
+    <input type="datetime-local" name="start" id="start" required>
+    <label for="duration">Duration in minutes</label>
+    <input type="integer" name="duration" id="duration" min="1" max="10" required>
+    <label for="circuit_id">Circuit_id</label>
+    <input type="integer" name="circuit_id" id="circuit_id" min="1" max="10" required>
+    <input type="submit" value="Add task">
+</form>  {% endif %}
+{% endblock %}
+
+{% block content %}
+<table>
+    <thead>
+        <td>id</td>
+        <td>start</td>
+        <td>duration</td>
+        <td>circuit id</td>
+        <td>circuit name</td>
+    </thead>
+    <tbody>
+    {% for task in tasks %}
+    <tr>
+        <article class="task">
+            <div>
+                <td><span>{{task['id']}}</span></td>
+                <td><span>{{task['start']}}</span></td>
+                <td><span>{{task['duration']}}</span></td>
+                <td><span>{{task['circuit_id']}}</span></td>
+                <td><span>{{task['name']}}</span></td>
+            </div>
+        </article>
+        {% if not loop.last %}
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
