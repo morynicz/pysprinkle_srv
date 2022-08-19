@@ -21,8 +21,8 @@ def index():
     ).fetchall()
     if request.method == 'GET':
         print(f"req is {request.headers['Accept']}")
-        keys = ["id", "start", "duration", "number"]
         if 'Accept' in request.headers and "application/json" in request.headers['Accept']:
+            keys = ["id", "start", "duration", "number"]
             return jsonify({
                 "current_time": int(time.time()),
                 "tasks": [{k: t[k] for k in keys} for t in tasks]
@@ -30,6 +30,7 @@ def index():
         print(f"woohoo {tasks}")
         converted_tasks = list()
         for task in tasks:
+            keys = ["id", "start", "duration", "number", "circuit_id", "name"]
             t = {k: task[k] for k in keys}
             t["start"] = tz_manipulation.utc_to_local(t["start"])
             # print(f"start local: {start} converted  to utc {tz_manipulation.local_to_utc(start)}")
