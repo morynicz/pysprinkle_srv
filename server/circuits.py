@@ -13,7 +13,7 @@ bp = Blueprint('circuits', __name__, url_prefix='/circuits')
 def index():
     db = get_db()
     circuits = db.execute(
-        'SELECT id, name'
+        'SELECT id, name, number'
         ' FROM circuit'
         ' ORDER BY id ASC'
     ).fetchall()

@@ -17,6 +17,7 @@
     <thead>
         <td>Id</td>
         <td>Name</td>
+        <td>Number</td>
     </thead>
     <tbody>
     {% for circuit in circuits %}
@@ -25,6 +26,7 @@
             <div>
                 <td><span>{{circuit['id']}}</span></td>
                 <td><span>{{circuit['name']}}</span></td>
+                <td><span>{{circuit['number']}}</span></td>
             </div>
         </article>
         {% if not loop.last %}
